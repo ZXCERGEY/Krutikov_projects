@@ -1,0 +1,9 @@
+Крутиков Сергей Витальевич
+
+https://learngitbranching.js.org/?locale=ru_RU
+
+1) добавление git add .
+2) комит: git commit -m "Название"
+3) загрузка: git push -u origin master
+
+17.01.23
