@@ -4,6 +4,9 @@ https://learngitbranching.js.org/?locale=ru_RU
 
 1) добавление git add .
 2) комит: git commit -m "Название"
-3) загрузка: git push -u origin master
+3) загрузка: git push -u origin (название ветки) master/project1
+
+4)git branch
+5)переключение: git checkout (название ветки)
 
 17.01.23
