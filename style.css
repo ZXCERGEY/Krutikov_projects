@@ -1,31 +1,79 @@
-*{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+const board = document.querySelector('.board')
+const body = document.querySelector('body')
+
+let data = [[0, 0, 2, 2], [0, 0, 0, 0], [2, 0, 0, 0], [0, 0, 0, 0]]
+const colors = {
+    0: 'lightgrey', 2: '#84FBAC', 4: '#C7B446', 8: '#BEBD7F', 16: '#2E3A23',
+    32: '#CBD0CC', 64: '#7E7B52', 128: ' #474B4E', 256: '#8F8F8', 512: '#354D73',
+    1024: '#A2231D', 2048: '#75151E'
 }
 
-body{
-    background-color: #111;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+body.addEventListener('keydown', (event) => {
+    moveController(event.key)
+})
 
+function moveController(key) {
+    switch (key) {
+        case 'a':
+            console.log('left')
+            break
+        case 'd':
+            console.log('right')
+            break
+        case 'w':
+            console.log('top')
+            break
+        case 's':
+            console.log('bottom')
+            break
+    }
+}
+reDrawField()
+
+
+function left() {
+    data.map(row => {
+        for (let i = 0; i < row.length; i++) {
+            if (row[i] === row[i + 1]) {
+                row[i] = row[i] * 2
+                row[i + 1] = 0
+            }
+        }
+    })
+}
+function right() {
+    data.map(row => {
+        for (let i = row.length - 1; i >= 0; i--) {
+            if (row[i] === row[i - 1]) {
+                row[i] = row[i] * 2
+                row[i - 1] = 0
+            }
+        }
+    })
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 400px;
-    flex-wrap: wrap;
+function clearZeroesAndFills(direction) {
+    data = data.map(row => row.filter(el => el !== 0))
+    data.map(row => {
+        while (row.length < 4) {
+            direction === 'left' ? row.push(0) : row.unshift(0)
+        }
+    })
 }
 
-.square{
-    width: 16px;
-    height: 16px;
-    background-color: #1b1b1b;
-    margin: 2px;
-    box-shadow: 0 0 2px #000;
+function reDrawField() {
+    board.innerHTML = ''
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+            draw(data[i][j])
+        }
+    }
+
+    function draw(num) {
+        const square = document.createElement('div')
+        square.classList.add('square')
+        square.style.backgroundColor = colors[num]
+        square.innerHTML = num ? num : ''
+        board.append(square)
+    }
 }

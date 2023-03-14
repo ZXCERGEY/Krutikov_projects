@@ -1,0 +1,8 @@
+git config --global --unset user.name
+git config --global --unset user.email
+
+git config --global  user.name "(name)"
+git config --global  user.email (email)
+
+git clone https://github.com/ZXCERGEY/Krutikov_projects -b 2048
+git clone https://github.com/kvantip2/familiya_projects -b 2048
